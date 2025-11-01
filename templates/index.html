@@ -111,7 +111,9 @@
                 <span class="role-badge {{ user.role|lower }}">{{ user.role }}</span>
             </div>
             <div>
-                <a href="/classrooms" class="btn btn-primary">{% if user.role == "Admin" %}강의실 관리{% else %}강의실 조회{% endif %}</a>
+                <a href="/reservations" class="btn btn-primary">내 예약</a>
+                <a href="/reservations/create" class="btn btn-primary" style="margin-left: 10px;">예약 생성</a>
+                <a href="/classrooms" class="btn btn-primary" style="margin-left: 10px;">{% if user.role == "Admin" %}강의실 관리{% else %}강의실 조회{% endif %}</a>
                 <a href="/logout" class="btn btn-danger" style="margin-left: 10px;">로그아웃</a>
             </div>
         </div>
@@ -120,9 +122,13 @@
             <h1>🎓 강의실 관리 시스템</h1>
             <p>{{ user.role }} 권한으로 로그인하셨습니다.</p>
             
-            <a href="/classrooms" class="btn btn-primary">{% if user.role == "Admin" %}강의실 관리 시작하기{% else %}강의실 조회하기{% endif %}</a>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="/reservations" class="btn btn-primary">내 예약 조회</a>
+                <a href="/reservations/create" class="btn btn-primary">예약 생성하기</a>
+                <a href="/classrooms" class="btn btn-primary">{% if user.role == "Admin" %}강의실 관리 시작하기{% else %}강의실 조회하기{% endif %}</a>
+            </div>
             {% if user.role == "Student" %}
-                <p style="margin-top: 15px; color: #999; font-size: 14px;">학생 계정으로는 강의실 조회만 가능합니다.</p>
+                <p style="margin-top: 15px; color: #999; font-size: 14px;">학생 계정으로는 강의실 조회와 예약 생성이 가능합니다.</p>
             {% endif %}
         </div>
 

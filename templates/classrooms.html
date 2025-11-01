@@ -111,7 +111,9 @@
         <div class="header">
             <h1>{% if user.role == "Admin" %}강의실 관리{% else %}강의실 조회{% endif %}</h1>
             <div>
-                <a href="/" class="btn btn-primary">홈으로</a>
+                <a href="/reservations" class="btn btn-primary">내 예약</a>
+                <a href="/reservations/create" class="btn btn-primary" style="margin-left: 10px;">예약 생성</a>
+                <a href="/" class="btn btn-primary" style="margin-left: 10px;">홈으로</a>
                 {% if user.role == "Admin" %}
                 <a href="/classrooms/create" class="btn btn-success" style="margin-left: 10px;">강의실 추가</a>
                 {% endif %}
@@ -127,6 +129,7 @@
                     <th>위치</th>
                     <th>수용인원</th>
                     <th>비품</th>
+                    <th>예약</th>
                     {% if user.role == "Admin" %}
                     <th>관리</th>
                     {% endif %}
@@ -150,6 +153,12 @@
                             {% if not classroom.equipment.get("projector") and not classroom.equipment.get("whiteboard") %}
                             <span style="color: #999;">없음</span>
                             {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 5px; flex-direction: column;">
+                            <a href="/reservations/create?classroom_id={{ id }}" class="btn btn-success btn-small">예약하기</a>
+                            <a href="/classrooms/{{ id }}/reservations" class="btn btn-primary btn-small">예약 현황</a>
                         </div>
                     </td>
                     {% if user.role == "Admin" %}
